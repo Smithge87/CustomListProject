@@ -1,1 +1,6 @@
 C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomList\bin\Debug\CustomList.exe.config
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomList\bin\Debug\CustomList.exe
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomList\bin\Debug\CustomList.pdb
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomList\obj\Debug\CustomList.csprojResolveAssemblyReference.cache
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomList\obj\Debug\CustomList.exe
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomList\obj\Debug\CustomList.pdb
