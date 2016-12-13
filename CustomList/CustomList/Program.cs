@@ -18,6 +18,14 @@ namespace CustomList
             apple.Remove(5);
             apple.Print();
             Console.ReadLine();
+            CustomList<string> banana = new CustomList<string>();
+            banana.Add("dog");
+            banana.Add("cat");
+            banana.Print();
+            Console.ReadLine();
+            banana.Remove("dog");
+            banana.Print();
+            Console.ReadLine();
         }
     }
 }

@@ -1,0 +1,9 @@
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomListTest\bin\Debug\CustomListTest.dll
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomListTest\bin\Debug\CustomListTest.pdb
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomListTest\bin\Debug\CustomList.exe
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomListTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomListTest\bin\Debug\CustomList.pdb
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomListTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomListTest\obj\Debug\CustomListTest.csprojResolveAssemblyReference.cache
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomListTest\obj\Debug\CustomListTest.dll
+C:\Users\Jack\Desktop\Projects\CustomList\CustomList\CustomListTest\obj\Debug\CustomListTest.pdb
