@@ -19,7 +19,7 @@ namespace CustomList
         public void Add(T addToArray)
         {
             if (customArray.Count() >= 0)
-                value = addToArray;
+            value = addToArray;
             T[] array = new T[customArray.Length + 1];
             for (int i = 0; i < customArray.Length; i++)
             {
@@ -131,12 +131,7 @@ namespace CustomList
         }
         public CustomList<T> Zip(CustomList<T> one, Func<T, T, T> func1)
         {
-            int l = 0;
-            for (int i = 0; i < customArray.Length; i++)
-                if ((customArray[i] != null) && (one.customArray[i] != null))
-                {
-                    l++; l++;
-                }
+            int l = customArray.Length > one.customArray.Length ? l = (one.customArray.Length * 2) : l = (customArray.Length * 2);
             CustomList<T> temporaryList = new CustomList<T>();
             T[] array = new T[l];
             temporaryList.customArray = array;
@@ -144,7 +139,7 @@ namespace CustomList
             int k = 0;
             int j = 1;
             for (int i = 0; i < customArray.Length; i++)
-                if ((customArray[i] != null) && (one.customArray[i] != null))
+                if (customArray.Length > i && one.customArray.Length >i)
                 {
                     temporaryListContent = customArray[i];
                     temporaryList.customArray[i + k] = temporaryListContent;
@@ -170,6 +165,10 @@ namespace CustomList
             one.customArray[m] = one.customArray[n];
             one.customArray[n] = temporary;
         }
+
+        // This is a bubble sort algorithm that will sort a lit of data in order of value
+        // from lowest to highest. It will not work on strings. it is also partially relient 
+        // on the 'exchange' function above ^ 
         public void BubbleSort(CustomList<T> one)
         {
             int i, j;
@@ -183,28 +182,6 @@ namespace CustomList
                 }
             }
         }
-        //public int Capacity { get; set; }
-        //DONE    public int Count { get; }
-        //DONE    public CustomList();
-        //DONE    public void Add(T item);
-        //public void Insert(int index, T item);
-        //DONE    public bool Remove(T item);
-        //DONE    public static SuperList<T> operator -(SuperList<T> list1, SuperList<T> list2);
-        //DONE    public static SuperList<T> operator +(SuperList<T> list1, SuperList<T> list2);
-        //DONE    public IEnumerator<T> GetEnumerator();
-        //IEnumerator IEnumerable.GetEnumerator();
 
-        //        The built-in List<T> class is a generic class that acts as a wrapper over the array class. You cannot use built-in List or Array methods.
-        //DONE    TESTED    (10 points): As a developer, I want to use a custom-built list class that stores its values in an array, so that I can store any data type in my collection.
-        //DONE    TESTED    (10 points): As a developer, I want the ability to add an object to an instance of my custom-built list class.
-        //DONE    TESTED    (10 points): As a developer, I want the ability to remove an object from an instance of my custom-built list class.
-        //DONE    (10 points): As a developer, I want the custom list class to be iterable.
-        //DONE    (10 points): As a developer, I want to be able to override the ToString method that converts the contents of the custom list to a string.
-        //DONE    TESTED    (10 points): As a developer, I want to be able to overload the + operator, so that I can add two instances of the custom list class together.
-        //DONE    TESTED    (10 points): As a developer, I want to be able to overload the – operator, so that I can subtract one instance of a custom list class from another instance of a custom list class.
-        //DONE    TESTED    (10 points): As a developer, I want a Count property implemented on the custom-built list class, so that I can get a count of the number of elements in my custom list class instance.
-        //DONE    (10 points): As a developer, I want the ability to Enumerable.Zip() two custom list class instances together.
-        //(10 points): As a developer, I want to use C# best practices, SOLID design principles, and good naming conventions on the project. 
-        //(20 points (2 points each)): As a developer, I want to create 10 unit tests for my project, so that I can ensure the functionality is working properly.
     }
 }

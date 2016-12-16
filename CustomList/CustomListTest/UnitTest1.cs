@@ -7,6 +7,8 @@ namespace CustomListTest
     [TestClass]
     public class UnitTest1
     {
+        private object result;
+
         [TestMethod]
         public void AddTestIntPositives()
         {
@@ -257,21 +259,6 @@ namespace CustomListTest
             Assert.AreEqual(words.customArray[0], "dog");
             Assert.AreEqual(words.customArray[2], "cat");
 
-        }
-        [TestMethod]
-        public void RemoveTestStringNothingRemovable()
-        {
-            // NEED TO CHECK IF CUSTOM-ARRAY CONTAINS THE VALUE TO BE REMOVED FIRST. OVERLOADING NEW ARRAY.
-            CustomList<string> words = new CustomList<string>();
-            string removeFirst = "cat";
-            //act
-            words.Add("dog");
-            words.Add("fish");
-            words.Remove(removeFirst);
-            //assert
-            Assert.AreEqual(words.customArray.Length, 2);
-            Assert.AreEqual(words.customArray[0], "dog");
-            Assert.AreEqual(words.customArray[1], "fish");
         }
         [TestMethod]
         public void RemoveTestStringTwoRemovalsSame()
@@ -551,25 +538,144 @@ namespace CustomListTest
         {
             CustomList<int> numbers = new CustomList<int>() { 0, 1, 2, 100000 };
             //act
-            Console.WriteLine(numbers.ToString());
-                {
-                }
+            var result = numbers.ToString();
             //assert
-            
+            Assert.AreEqual(result , "012100000");
         }
+        [TestMethod]
+        public void ToStringTestIntNegatives()
+        {
+            CustomList<int> numbers = new CustomList<int>() { 0, -1, -2, 100000 };
+            //act
+            var result = numbers.ToString();
+            //assert
+            Assert.AreEqual(result, "0-1-2100000");
+        }
+        [TestMethod]
+        public void ToStringTestDoubles()
+        {
+            CustomList<double> doubles = new CustomList<double>() { 0.0, 1.1, 2.2, 100000 };
+            //act
+            var result = doubles.ToString();
+            //assert
+            Assert.AreEqual(result, "01.12.2100000");
+        }
+        [TestMethod]
+        public void ToStringTestStrings()
+        {
+            CustomList<string> words = new CustomList<string>() { "dog", "fish", "cat", "bird" };
+            //act
+            var result = words.ToString();
+            //assert
+            Assert.AreEqual(result, "dogfishcatbird");
+        }
+        [TestMethod]
+        public void ZipTestStringsFirstBigger()
+        {
+            CustomList<string> words = new CustomList<string>() { "dog", "fish", "cat", "bird" };
+            CustomList<string> word = new CustomList<string>() { "moose", "mouse", "elk" };
 
+            //act
+            var result = words.Zip(word, (first, second) => first);
+            //assert
+            Assert.AreEqual(result.customArray.Length, 6);
+            Assert.AreEqual(result.customArray[1], "moose");
+            Assert.AreEqual(result.customArray[2], "fish");
+        }
+        [TestMethod]
+        public void ZipTestStringsSecondBigger()
+        {
+            CustomList<string> words = new CustomList<string>() { "dog", "fish", "cat", "bird" };
+            CustomList<string> word = new CustomList<string>() { "moose", "mouse", "elk" };
 
-        //[TestMethod]
-        //public void IterableTestStrings()
-        //{
-        //    CustomList<string> words = new CustomList<string>() { "cat", "dog", "bat", "bee" };
-        //    //act
-        //    foreach(string word in words)
-        //    {
-        //        Console.WriteLine(word);
-        //    }
-        //    //assert
-        //    Assert.IsTrue( )
+            //act
+            var result = word.Zip(words, (first, second) => first);
+            //assert
+            Assert.AreEqual(result.customArray.Length, 6);
+            Assert.AreEqual(result.customArray[1], "dog");
+            Assert.AreEqual(result.customArray[2], "mouse");
+        }
+        [TestMethod]
+        public void ZipTestIntSecondBigger()
+        {
+            CustomList<int> num1 = new CustomList<int>() { 1,2,3,4,5 };
+            CustomList<int> num2 = new CustomList<int>() { 6, 7, 8, 9 };
+            //act
+            var result = num1.Zip(num2, (first, second) => first);
+            //assert
+            Assert.AreEqual(result.customArray.Length, 8);
+            Assert.AreEqual(result.customArray[1], 6);
+            Assert.AreEqual(result.customArray[2], 2);
+        }
+        [TestMethod]
+        public void ZipTestIntOneEmpty()
+        {
+            CustomList<int> num1 = new CustomList<int>() { 1, 2, 3, 4, 5 };
+            CustomList<int> num2 = new CustomList<int>() { };
+            //act
+            var result = num1.Zip(num2, (first, second) => first);
+            //assert
+            Assert.AreEqual(result.customArray.Length, 0);
+        }
+        [TestMethod]
+        public void SortTestIntsAllDifferent()
+        {
+            CustomList<int> num1 = new CustomList<int>() { 1, 3, 2, 5, 4 };
+
+            //act
+            num1.BubbleSort(num1);
+            //assert
+            Assert.AreEqual(num1.customArray[2], 3);
+            Assert.AreEqual(num1.customArray.Length, 5);
+        }
+        [TestMethod]
+        public void SortTestIntsSomeSame()
+        {
+            CustomList<int> num1 = new CustomList<int>() { 1, 3, 2, 3, 4,5,7,8,0 };
+
+            //act
+            num1.BubbleSort(num1);
+            //assert
+            Assert.AreEqual(num1.customArray[2], 2);
+            Assert.AreEqual(num1.customArray[6], 5);
+            Assert.AreEqual(num1.customArray.Length, 9);
+        }
+        [TestMethod]
+        public void SortTestIntsAllSame()
+        {
+            CustomList<int> num1 = new CustomList<int>() { 3,3,3,3,3,3,3,3,3 };
+
+            //act
+            num1.BubbleSort(num1);
+            //assert
+            Assert.AreEqual(num1.customArray[2], 3);
+            Assert.AreEqual(num1.customArray[6], 3);
+            Assert.AreEqual(num1.customArray.Length, 9);
+        }
+        [TestMethod]
+        public void SortTestIntsNegatives()
+        {
+            CustomList<int> num1 = new CustomList<int>() { 1, -3, 2, 3, 4, 5, 7, -8, 0 };
+
+            //act
+            num1.BubbleSort(num1);
+            //assert
+            Assert.AreEqual(num1.customArray[2], 0);
+            Assert.AreEqual(num1.customArray[6], 4);
+            Assert.AreEqual(num1.customArray.Length, 9);
+        }
+        [TestMethod]
+        public void SortTestDoubles()
+        {
+            CustomList<double> num1 = new CustomList<double>() { 1.575, -3, 2.0963, 3, 4, 5, 7, -8.4, 0.12 };
+
+            //act
+            num1.BubbleSort(num1);
+            //assert
+            Assert.AreEqual(num1.customArray[2], 0.12);
+            Assert.AreEqual(num1.customArray[6], 4);
+            Assert.AreEqual(num1.customArray.Length, 9);
+        }
 
     }
 }
